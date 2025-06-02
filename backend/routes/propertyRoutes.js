@@ -18,7 +18,7 @@ module.exports = router;
 // GET: Fetch all properties
 router.get("/all", async (req, res) => {
   try {
-    const properties = await Property.find();
+    const properties = await Property.find().populate("department", "name");
     res.json(properties);
   } catch (err) {
     console.error(err);

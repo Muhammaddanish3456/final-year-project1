@@ -8,11 +8,16 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/usersDB', {
+mongoose.connect('mongodb://localhost:27017/CPM', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log('✅ MongoDB connected'))
 .catch(err => console.log('❌ MongoDB connection error:', err));
+
+app.get('/', (req, res) => {
+  res.send('College Property Management API is running 🚀');
+});
+
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -59,6 +64,9 @@ app.use('/api/properties', propertyRoutes);
 
 app.use('/api/properties/all', propertyRoutes);
 app.use('/api/properties/delete', propertyRoutes);
+
+const departmentRoutes = require('./routes/departments');
+app.use('/departments', departmentRoutes);
 
 
 // Start server

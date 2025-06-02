@@ -73,7 +73,7 @@ const ViewProperties = () => {
                   <tr key={property._id}>
                     <td className="border px-4 py-2">{property.name}</td>
                     <td className="border px-4 py-2">{property.type}</td>
-                    <td className="border px-4 py-2">{property.department}</td>
+                    <td className="border px-4 py-2">{property.department.name}</td>
                     <td className="border px-4 py-2">{property.quantity}</td>
                     <td className="border px-4 py-2">{property.location}</td>
                     <td className="border px-4 py-2">{property.condition}</td>

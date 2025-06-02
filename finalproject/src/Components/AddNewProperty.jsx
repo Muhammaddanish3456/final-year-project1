@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
 
@@ -12,7 +12,23 @@ const AddNewProperty = () => {
     condition: "",
   });
 
+  const [departments, setDepartments] = useState([]);
   const [message, setMessage] = useState("");
+
+  // Fetch departments from backend
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/departments");
+        const data = await res.json();
+        setDepartments(data);
+      } catch (err) {
+        console.error("Error fetching departments:", err);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -74,15 +90,20 @@ const AddNewProperty = () => {
             </div>
             <div>
               <label htmlFor="department">Department:</label>
-              <select name="department" value={formData.department} onChange={handleChange} required className="w-full border p-2">
+              <select
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                required
+                className="w-full border p-2"
+              >
                 <option value="">-- Select Department --</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Electrical Engineering">Physics</option>
-                <option value="Mechanical Engineering">Chemistry</option>
-                <option value="Mechanical Engineering">Psychology</option>
-                <option value="Mechanical Engineering">Urdu</option>
-                <option value="Mechanical Engineering">Economic</option>
-                <option value="Chemistry">Chemistry</option>
+                {departments.map((dept) => (
+                  <option key={dept._id} value={dept._id}>
+                    {dept.name}
+                  </option>
+
+                ))}
               </select>
             </div>
             <div>
@@ -111,4 +132,3 @@ const AddNewProperty = () => {
 };
 
 export default AddNewProperty;
-//hamid

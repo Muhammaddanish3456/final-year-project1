@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const propertySchema = new mongoose.Schema({
   name: String,
   type: String,
-  department: String,
+  department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Department'
+  },
   quantity: Number,
   location: String,
   condition: String,
