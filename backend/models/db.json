@@ -1,0 +1,12 @@
+{
+  "missingItems": [
+    {
+      "id": 1,
+      "itemName": "Projector",
+      "department": "Computer Science",
+      "description": "Lost after seminar",
+      "dateReported": "2025-06-01",
+      "status": "Missing"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "../styles/Sidebar.css";
 import Footer from "./Footer";
-
+import "../styles/ContactUs.css"; // Assuming you have a CSS file for styling
 const ContactUs = () => {
   return (
     <div>

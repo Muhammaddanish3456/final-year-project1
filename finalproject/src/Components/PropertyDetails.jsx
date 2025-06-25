@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import "../styles/Sidebar.css";
+import "../styles/PropertyDetails.css"; // Assuming you have a CSS file for styling
 
 
 const PropertyDetails = () => {
@@ -13,7 +14,7 @@ const PropertyDetails = () => {
   College Property System
 </h1>
         <h1 className="text-2xl font-bold mb-2">Property Details</h1>
-        <nav>
+        {/* <nav>
           <ul className="flex gap-4 text-blue-600 underline">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/admin-dashboard">Admin</Link></li>
@@ -21,7 +22,7 @@ const PropertyDetails = () => {
             <li><Link to="/viewproperties">Properties</Link></li>
             <li><Link to="/contactUs">Contact</Link></li>
           </ul>
-        </nav>
+        </nav> */}
       </header>
 
       <main className="p-4 max-w-3xl mx-auto">

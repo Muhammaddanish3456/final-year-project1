@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import "../styles/Reports.css"; // Assuming you have a CSS file for styling  
 
 const Reports = () => {
   return (
@@ -23,7 +24,7 @@ const Reports = () => {
         </nav> */}
       </header>
 
-      <main className="p-4 max-w-4xl mx-auto">
+      <main className="p-4 max-w-4xl mx-auto" style={{marginLeft: "220px"}}>
         <section className="reports-section bg-white shadow-md rounded p-6">
           <h2 className="text-xl font-semibold mb-4">Property Reports Summary</h2>
           <table className="w-full border border-collapse">

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
-import "../styles/Sidebar.css";
+import "../styles/Departments.css"; // Assuming you have a CSS file for styling
 
 const Departments = () => {
   const [departments, setDepartments] = useState([]);
@@ -63,115 +63,112 @@ const Departments = () => {
   };
 
   return (
-    <div>
-      <Sidebar />
-      <header className="p-4 bg-gray-100 border-b">
-        <h1 className="site-name">College Property System</h1>
-        <h1 className="text-2xl font-bold mb-2">Departments</h1>
-      </header>
+    <div className="page-container">
+      <div className="sidebar">                        
+        <Sidebar />
+      </div>
+      <div className="main-content">
+        <header>
+          <h1 className="site-name">College Property System</h1>
+          <h1>Departments</h1>
+        </header>
+        <main>
+          <section className="departments-list">
+            <div className="flex justify-between items-center mb-4">
+              <h2>Department List</h2>
+              <button
+                onClick={() => {
+                  setShowModal(true);
+                  setEditDept(null);
+                  setFormData({ name: "", head: "" });
+                }}
+                className="add-department-btn"
+              >
+                Add Department
+              </button>
+            </div>
+            <p>Below are the departments managing college properties.</p>
 
-      <main className="p-4 max-w-4xl mx-auto">
-        <section className="departments-list">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">Department List</h2>
-            <button
-              onClick={() => {
-                setShowModal(true);
-                setEditDept(null);
-                setFormData({ name: "", head: "" });
-              }}
-              className="px-4 py-2 bg-blue-600 text-white rounded"
-            >
-              Add Department
-            </button>
-          </div>
-          <p className="mb-4">Below are the departments managing college properties.</p>
-
-          {showModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-30 z-50">
-              <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded shadow-lg w-96">
-                <h2 className="text-xl font-bold mb-4">
-                  {editDept ? "Edit" : "Add"} Department
-                </h2>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Department Name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="border w-full p-2 mb-2"
-                />
-                <input
-                  type="text"
-                  name="head"
-                  placeholder="Head of Department"
-                  value={formData.head}
-                  onChange={handleChange}
-                  className="border w-full p-2 mb-4"
-                />
-                <div className="flex justify-end gap-2">
-                  <button
-                    onClick={() => setShowModal(false)}
-                    className="px-4 py-2 bg-gray-300 rounded"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleSubmit}
-                    className="px-4 py-2 bg-green-600 text-white rounded"
-                  >
-                    {editDept ? "Update" : "Save"}
-                  </button>
+            {showModal && (
+              <div className="modal-overlay">
+                <div className="modal">
+                  <h2>{editDept ? "Edit" : "Add"} Department</h2>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Department Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="text"
+                    name="head"
+                    placeholder="Head of Department"
+                    value={formData.head}
+                    onChange={handleChange}
+                  />
+                  <div className="modal-actions">
+                    <button
+                      onClick={() => setShowModal(false)}
+                      className="cancel-btn"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={handleSubmit}
+                      className="save-btn"
+                    >
+                      {editDept ? "Update" : "Save"}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <table className="w-full border border-gray-300 text-left">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border px-4 py-2">Department Name</th>
-                <th className="border px-4 py-2">Head of Department</th>
-                <th className="border px-4 py-2">Total Assets</th>
-                <th className="border px-4 py-2">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {departments.map((dept) => (
-                <tr key={dept._id}>
-                  <td className="border px-4 py-2">{dept.name}</td>
-                  <td className="border px-4 py-2">{dept.head}</td>
-                  <td className="border px-4 py-2">{dept.totalAssets}</td>
-                  <td className="border px-4 py-2">
-                    <button
-                      onClick={() => openEditModal(dept)}
-                      className="mr-2 text-blue-600"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(dept._id)}
-                      className="text-red-600"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {departments.length === 0 && (
+            <table>
+              <thead>
                 <tr>
-                  <td colSpan="4" className="border px-4 py-2 text-center">
-                    No departments found.
-                  </td>
+                  <th>Department Name</th>
+                  <th>Head of Department</th>
+                  <th>Total Assets</th>
+                  <th>Actions</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </section>
-      </main>
-
-      <Footer />
-
+              </thead>
+              <tbody>
+                {departments.map((dept) => (
+                  <tr key={dept._id}>
+                    <td>{dept.name}</td>
+                    <td>{dept.head}</td>
+                    <td>{dept.totalAssets}</td>
+                    <td>
+                      <button
+                        onClick={() => openEditModal(dept)}
+                        className="edit-btn"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(dept._id)}
+                        className="delete-btn"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {departments.length === 0 && (
+                  <tr>
+                    <td colSpan="4" className="text-center">
+                      No departments found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </section>
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

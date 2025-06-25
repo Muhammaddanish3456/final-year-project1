@@ -1,0 +1,17 @@
+/* CONTACT PAGE */
+
+
+/* Ensure the form is contained and centered */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  max-width: 500px; /* Limits input box width */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background-color: #f9fafb;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  margin: 0 auto; /* center inside form if needed */
+  display: block;
+}

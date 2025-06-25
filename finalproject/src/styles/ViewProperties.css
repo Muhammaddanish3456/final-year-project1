@@ -1,0 +1,149 @@
+/* ViewProperties.css */
+
+/* Base container */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: #9a0000;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem;
+  text-align: center;
+}
+
+.site-name {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #f8f9fa;
+}
+
+/* Page title */
+#Ap {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+  color: #f8f9fa;
+}
+
+/* Main layout shifted right for sidebar */
+.main-with-sidebar {
+  margin-left: 220px; /* space for fixed sidebar */
+  padding: 2rem;
+  max-width: calc(100% - 220px);
+  box-sizing: border-box;
+}
+
+/* Property table container */
+.property-table {
+  background-color: #ededf1;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(243, 236, 236, 0.05);
+  /* overflow-x: auto; */
+  margin-left: 220px;
+}
+#Pl{
+    background-color: #0a0a7a;
+    color: #f8f9fa;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  border: 1px solid #e0e0e0;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f3f4f6;
+  color: #333;
+  font-weight: 600;
+}
+
+td {
+  color: #444;
+}
+
+td img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Delete button */
+button {
+  background-color: #e3342f;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: #cc1f1a;
+}
+
+/* File link */
+a {
+  color: #0055aa;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-with-sidebar {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .property-table {
+    padding: 1rem;
+  }
+
+  th,
+  td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+
+  td img {
+    width: 50px;
+    height: 50px;
+  }
+
+  button {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-name {
+    font-size: 1.5rem;
+  }
+
+  #Ap {
+    font-size: 1.25rem;
+  }
+
+  th,
+  td {
+    font-size: 0.75rem;
+    padding: 0.4rem;
+  }
+}

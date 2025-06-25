@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
+import "../styles/ViewProperties.css"; // Assuming you have a CSS file for styling
 
 const ViewProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -45,12 +46,12 @@ const ViewProperties = () => {
       <Sidebar />
       <header className="p-4 bg-gray-100 border-b">
         <h1 className="site-name">College Property System</h1>
-        <h1 className="text-2xl font-bold mb-2">All Properties</h1>
+        <h1 className="text-2xl font-bold mb-2" id="Ap">All Properties</h1>
       </header>
 
       <main className="p-4 max-w-6xl mx-auto">
         <section className="property-table bg-white shadow-md rounded p-6">
-          <h2 className="text-xl font-semibold mb-4">Property List</h2>
+          <h2 className="text-xl font-semibold mb-4" id="Pl">Property List</h2>
           {loading ? (
             <p>Loading properties...</p>
           ) : properties.length === 0 ? (
@@ -65,6 +66,7 @@ const ViewProperties = () => {
                   <th className="border px-4 py-2">Quantity</th>
                   <th className="border px-4 py-2">Location</th>
                   <th className="border px-4 py-2">Condition</th>
+                  <th className="border px-4 py-2">File</th>
                   <th className="border px-4 py-2">Actions</th>
                 </tr>
               </thead>
@@ -73,10 +75,33 @@ const ViewProperties = () => {
                   <tr key={property._id}>
                     <td className="border px-4 py-2">{property.name}</td>
                     <td className="border px-4 py-2">{property.type}</td>
-                    <td className="border px-4 py-2">{property.department.name}</td>
+                    <td className="border px-4 py-2">{property.department?.name || "N/A"}</td>
                     <td className="border px-4 py-2">{property.quantity}</td>
                     <td className="border px-4 py-2">{property.location}</td>
                     <td className="border px-4 py-2">{property.condition}</td>
+                    <td className="border px-4 py-2">
+                      {property.filePath ? (
+                        property.filePath.match(/\.(jpeg|jpg|png|gif)$/i) ? (
+                          <img
+                            src={`http://localhost:5000/${property.filePath.replace(/\\/g, "/")}`}
+                            alt="Property"
+                            className="w-16 h-16 object-cover rounded" width={100} height={100}
+                          />
+                        ) : (
+                          <a
+                            href={`http://localhost:5000/${property.filePath.replace(/\\/g, "/")}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline"
+                          >
+                            View File
+                          </a>
+                        )
+                      ) : (
+                        "No file"
+                      )}
+                    </td>
+
                     <td className="border px-4 py-2 text-center">
                       <button
                         onClick={() => handleDelete(property._id)}

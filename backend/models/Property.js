@@ -10,6 +10,7 @@ const propertySchema = new mongoose.Schema({
   quantity: Number,
   location: String,
   condition: String,
+  filePath: String // 🆕 stores the uploaded file's path
 });
 
 module.exports = mongoose.model('Property', propertySchema);

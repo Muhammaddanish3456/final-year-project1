@@ -1,10 +1,38 @@
 const express = require('express');
 const router = express.Router();
 const Property = require('../models/Property');
+const multer = require('multer');
+const path = require('path');
 
-router.post('/', async (req, res) => {
+// 📁 Multer setup for file upload
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Ensure this folder exists
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + file.originalname;
+    cb(null, uniqueSuffix);
+  }
+});
+
+const upload = multer({ storage });
+
+// ✅ POST route with file upload
+router.post('/', upload.single('file'), async (req, res) => {
   try {
-    const property = new Property(req.body);
+    const { name, type, department, quantity, location, condition } = req.body;
+    const filePath = req.file ? req.file.path : null;
+
+    const property = new Property({
+      name,
+      type,
+      department,
+      quantity,
+      location,
+      condition,
+      filePath  // Store the file path in MongoDB
+    });
+
     await property.save();
     res.status(201).json({ message: 'Property added successfully' });
   } catch (err) {
@@ -13,9 +41,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
-
-// GET: Fetch all properties
+// ✅ GET: Fetch all properties
 router.get("/all", async (req, res) => {
   try {
     const properties = await Property.find().populate("department", "name");
@@ -26,7 +52,7 @@ router.get("/all", async (req, res) => {
   }
 });
 
-// routes/propertyRoutes.js
+// ✅ DELETE: Remove property by ID
 router.delete("/delete/:id", async (req, res) => {
   try {
     const deleted = await Property.findByIdAndDelete(req.params.id);
@@ -36,5 +62,5 @@ router.delete("/delete/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-//zain
-//danish
+
+module.exports = router;

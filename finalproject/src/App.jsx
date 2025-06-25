@@ -12,6 +12,9 @@ import Reports from "./Components/Reports";
 import ViewProperties from "./Components/ViewProperties";
 import CreateAccount from "./Components/CreateAccount";
 import { useEffect } from "react";
+import RepairList from "./Components/RepairList";
+import MissingList from "./Components/MissingList";
+
 
 const App = () => {
   useEffect(() => {
@@ -31,6 +34,8 @@ const App = () => {
       <Route path="/propertydetails" element={<PropertyDetails />} />
       <Route path="/addnewproperty" element={<AddNewProperty />} />
       <Route path="/createaccount" element={<CreateAccount />} />
+      <Route path="/repairlist" element={<RepairList />} />
+      <Route path="/missinglist" element={<MissingList />} />
     </Routes>
   );
 }

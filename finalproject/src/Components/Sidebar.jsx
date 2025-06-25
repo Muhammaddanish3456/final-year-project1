@@ -7,8 +7,8 @@ import '../styles/Sidebar.css'; // Adjust the path as necessary
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h1 className="logo"></h1>
-      <img src={logo} alt="" style={{width: '100%' }} />
+
+
       <nav>
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
@@ -19,7 +19,10 @@ const Sidebar = () => {
           <li><Link to="/reports">Reports</Link></li>
           <li><Link to="/AddNewProperty">AddNewProperty</Link></li>
           <li><Link to="/createaccount">CreateAccount</Link></li>
-         
+          <li><Link to="/RepairList">RepairList</Link></li>
+          <li><Link to="/MissingList">MissingList</Link></li>
+          <li><Link to="/PropertyDetails">PropertyDetails</Link></li>
+
         </ul>
       </nav>
     </div>

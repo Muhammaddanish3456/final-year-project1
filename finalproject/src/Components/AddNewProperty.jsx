@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Sidebar from "./Sidebar";
+import "../styles/AddNewProperty.css"; // Assuming you have a CSS file for styling
 
 const AddNewProperty = () => {
   const [formData, setFormData] = useState({
@@ -37,36 +38,50 @@ const AddNewProperty = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:5000/api/properties", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
+const [file, setFile] = useState(null);
 
-      const data = await res.json();
-      if (res.ok) {
-        setMessage("Property added successfully!");
-        setFormData({
-          name: "",
-          type: "",
-          department: "",
-          quantity: 1,
-          location: "",
-          condition: "",
-        });
-      } else {
-        setMessage(data.message || "Error adding property.");
-      }
-    } catch (err) {
-      console.error("Error:", err);
-      setMessage("Server error. Please try again.");
+const handleFileChange = (e) => {
+  setFile(e.target.files[0]);
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const payload = new FormData();
+  Object.entries(formData).forEach(([key, value]) => {
+    payload.append(key, value);
+  });
+  if (file) {
+    payload.append("file", file); // 🔗 Append the file
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/properties", {
+      method: "POST",
+      body: payload
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      setMessage("Property added successfully!");
+      setFormData({
+        name: "",
+        type: "",
+        department: "",
+        quantity: 1,
+        location: "",
+        condition: "",
+      });
+      setFile(null);
+    } else {
+      setMessage(data.message || "Error adding property.");
     }
-  };
+  } catch (err) {
+    console.error("Error:", err);
+    setMessage("Server error. Please try again.");
+  }
+};
+
 
   return (
     <div>
@@ -118,7 +133,12 @@ const AddNewProperty = () => {
               <label htmlFor="condition">Condition:</label>
               <input type="text" name="condition" value={formData.condition} onChange={handleChange} required className="w-full border p-2" />
             </div>
+            <div>
+              <label htmlFor="condition">Add File:</label>
+              <input type="file" name="file" onChange={handleFileChange} className="w-full border p-2" />
+            </div>
             <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+            
               Add Property
             </button>
             {message && <p className="mt-2 text-green-600">{message}</p>}

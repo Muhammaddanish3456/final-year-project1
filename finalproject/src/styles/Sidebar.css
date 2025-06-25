@@ -1,6 +1,7 @@
-.sidebar {
-  position: fixed;
-  top: 0;
+/* Sidebar Styles */
+ .sidebar {
+  
+  position: fixed ;
   left: 0;
   width: 220px;
   height: 500px;
@@ -10,13 +11,13 @@
   box-sizing: border-box;
 }
 
-.sidebar .logo {
+/* .sidebar .logo {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 30px;
 
  
-}
+} */
 
 .nav-links {
   list-style: none;
@@ -33,11 +34,25 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #007bff;
+  color: #ffffff;
   font-weight: 500;
 }
 
 .nav-links a:hover {
-  color: #0056b3;
+  background-color: #ffffff;
+  color: #030303;
   text-decoration: underline;
 }
+/* Sidebar Styles */
+.sidebar { 
+    width: 200px;
+    background: #003366;
+    color: white;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 123px;
+    left: 0;
+     height: 0px;
+} 
+
+ 

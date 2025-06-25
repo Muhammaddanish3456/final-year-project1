@@ -1,0 +1,41 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+     padding-top: 60px;
+   
+}
+
+/* Page Container */
+.page-container {
+    display: flex;
+    min-height: 100vh;
+
+}
+
+/* Main Content Styles */
+.main-content {
+    
+    flex: 1;
+    margin-left: 220px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        padding: 1rem;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}

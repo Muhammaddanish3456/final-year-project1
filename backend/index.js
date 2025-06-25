@@ -42,10 +42,13 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.post('/api/login', async (req, res) => {
+  console.log("Login request received:", req.body);
+  
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ email });
+    log("User found:", user);
     if (!user) return res.status(400).json({ message: 'User not found' });
 
     if (user.password !== password) {
@@ -64,6 +67,10 @@ app.use('/api/properties', propertyRoutes);
 
 app.use('/api/properties/all', propertyRoutes);
 app.use('/api/properties/delete', propertyRoutes);
+
+const path = require('path');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 const departmentRoutes = require('./routes/departments');
 app.use('/departments', departmentRoutes);
